@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="mb-5">
-        <a href="{{ route('admin.movie.index') }}" class="btn btn-primary">All Movie</a>
+        <a href="{{ route('admin.serie.index') }}" class="btn btn-primary">All Serie</a>
     </div>
 
     <div id="root">

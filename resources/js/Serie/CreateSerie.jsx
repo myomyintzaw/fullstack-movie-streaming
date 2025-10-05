@@ -15,7 +15,6 @@ const category_data = blade_movie_category.map((d) => {
 
 const CreateSerie = () => {
     const [loader, setLoader] = useState(false);
-    const [directLink, setDirectLink] = useState("");
 
     const [data, setData] = useState({
         embed_link: "",
@@ -43,39 +42,9 @@ const CreateSerie = () => {
             });
         });
 
-        //         const api = (v) =>
-        //   axios.get(`https://api.themoviedb.org/3/movie/${v}`, {
-        //     params: {
-        //       api_key: import.meta.env.VITE_TMDB_API_KEY, // or hardcode valid key for test
-        //       language: "en-US",
-        //     },
-        //   });
     };
 
-    // const changeData=(type,v)=>{
-    //     if(type=='name'){
-    //         setData({
-    //             ...data,name:v,
-    //         });
-    //     }
-    // }
-
-    const uploadMovie = () => {
-        if (directLink == "") {
-            return alert("Please enter movie direct source link");
-            // return;
-        }
-        const api = `https://streamhgapi.com/api/upload/url?key=30781d7ii5ivwsmmrxxzq&url=${directLink}`;
-        axios.get(api).then((d) => {
-            const file_code = d.data.result.filecode;
-            setData({
-                ...data,
-                embed_link: `${file_code}`,
-
-                // embed_link:`https://streamango.com/embed/${file_code}/`,
-            });
-        });
-    };
+  
 
     // change category
     const changeCategory = (d) => {
@@ -93,11 +62,11 @@ const CreateSerie = () => {
     const storeMovie = () => {
         setLoader(true);
         axios
-            .post("/admin/api/store-movie", data)
+            .post("/admin/api/store-serie", data)
             .then((d) => {
                 setLoader(false);
                 if (d.data == "success") {
-                    toast.success("movie added successfully");
+                    toast.success("serie created");
                     setTimeout(() => {
                         location.reload();
                     }, 2000);
@@ -221,27 +190,9 @@ const CreateSerie = () => {
                     </div>
                     {/* end of col-md-4 first */}
 
+
                     {/* Start of col-md-4 sec */}
                     <div className="col-md-4 ">
-                        <div className="form-group">
-                            <label htmlFor="">Enter movie direct source</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                onChange={(e) => setDirectLink(e.target.value)}
-                            />
-                            {data.embed_link != "" && (
-                                <div>{data.embed_link}</div>
-                            )}
-
-                            <button
-                                onClick={uploadMovie}
-                                className="btn btn-primary mt-2"
-                            >
-                                Up load
-                            </button>
-                        </div>
-
                         <div className="form-group">
                             <label htmlFor="">Choose Category</label>
                             <ReactSelect

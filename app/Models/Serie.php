@@ -18,8 +18,8 @@ class Serie extends Model
 
     public function category()
     {
-        return $this->belongsToMany(Category::class,'category_serie');
+        // return $this->belongsToMany(Category::class,'category_serie');
 
-        // return $this->belongsToMany(Category::class, 'category_series', 'series_id', 'category_id');
+        return $this->belongsToMany(Category::class, 'category_series', 'series_id', 'category_id');
     }
 }

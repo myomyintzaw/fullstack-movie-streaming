@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="mb-5">
-        <a href="{{ route('admin.movie.index') }}" class="btn btn-primary">Create Movie</a>
+        <a href="{{ route('admin.movie.create') }}" class="btn btn-primary">Create Movie</a>
     </div>
 
     <table class="mt-3 table table-striped">

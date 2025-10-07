@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="mb-5">
-        <a href="{{ route('admin.serie.index') }}" class="btn btn-primary">Create Serie</a>
+        <a href="{{ route('admin.serie.create') }}" class="btn btn-primary">Create Serie</a>
     </div>
 
     <table class="mt-3 table table-striped">
@@ -30,8 +30,9 @@
             <td>{{$d->rating}}</td>
             <td><span class="badge badge-success">{{$d->view_count}}</span></td>
             <td>
-                <a href="{{route('admin.movie.edit',$d->id)}}" class="btn btn-sm btn-info">Edit</a>
-                <form onsubmit="return confirm('sure for delete?')" class="d-inline" action="{{route('admin.movie.destroy',$d->id)}}" method="POST" style="display: inline-block;" onsubmit="return confirm('Are you sure?')">
+                <a href="{{route('admin.serie-epi.index').'?serie_id='.$d->id}}" class="btn btn-warning">Manage Episode</a>
+                <a href="{{route('admin.serie.edit',$d->id)}}" class="btn btn-sm btn-info">Edit</a>
+                <form onsubmit="return confirm('sure for delete?')" class="d-inline" action="{{route('admin.serie.destroy',$d->id)}}" method="POST" style="display: inline-block;" onsubmit="return confirm('Are you sure?')">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-sm btn-danger">Delete</button>

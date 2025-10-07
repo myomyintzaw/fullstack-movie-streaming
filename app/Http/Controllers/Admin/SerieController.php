@@ -83,9 +83,9 @@ class SerieController extends Controller
      */
     public function edit(string $id)
     {
-        $data = Movie::where('id', $id)->with('category')->first();
+        $data = Serie::where('id', $id)->with('category')->first();
         $category = Category::all();
-        return view('admin.movie.edit', compact('data', 'category'));
+        return view('admin.serie.edit', compact('data', 'category'));
     }
 
     /**
@@ -97,7 +97,6 @@ class SerieController extends Controller
 
         //validation
         $v = Validator::make($request->all(), [
-            'embed_link' => 'required',
             'name' => 'required',
             'release_date' => 'required',
             'rating' => 'required',
@@ -111,14 +110,13 @@ class SerieController extends Controller
         }
 
         //update movie data
-        $movie = Movie::find($id);
+        $movie = Serie::find($id);
         $movie->update([
             'release_date' => $request->release_date,
             'name' => $request->name,
             'image' => $request->image_url,
             'description' => $request->description,
             'rating' => $request->rating,
-            'embed_link' => $request->embed_link,
         ]);
         //category sync
         $movie->category()->sync($request->category);
@@ -130,13 +128,13 @@ class SerieController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Movie::find($id);
+        $data = Serie::find($id);
 
         //delete category pivot data
         $data->category()->sync([]);
 
         //delete movie
         $data->delete();
-        return redirect()->back()->with('success', 'Movie Deleted Successfully');
+        return redirect()->back()->with('success', 'Serie Deleted Successfully');
     }
 }

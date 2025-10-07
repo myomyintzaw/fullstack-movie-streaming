@@ -26,10 +26,8 @@ const selected_category = blade_movie.category.map((c) => {
 
 const EditSerie= () => {
     const [loader, setLoader] = useState(false);
-    const [directLink, setDirectLink] = useState("");
 
     const [data, setData] = useState({
-        embed_link: blade_movie.embed_link,
         name: blade_movie.name,
         release_date: blade_movie.release_date,
         rating: blade_movie.rating,
@@ -43,51 +41,21 @@ const EditSerie= () => {
 
         // console.log(api);
 
-        axios.get(api).then(({d}) => {
-            console.log(d);
+        axios.get(api).then(({data}) => {
+            console.log(data);
             setData({
                 ...data,
-                name: d.data.original_title,
-                release_date: d.data.release_date,
-                rating: d.data.vote_average,
-                image_url: `https://media.themoviedb.org/t/p/w440_and_h660_face${d.data.poster_path}`,
-                description: d.data.overview,
-            });
-        });
-
-        //         const api = (v) =>
-        //   axios.get(`https://api.themoviedb.org/3/movie/${v}`, {
-        //     params: {
-        //       api_key: import.meta.env.VITE_TMDB_API_KEY, // or hardcode valid key for test
-        //       language: "en-US",
-        //     },
-        //   });
-    };
-
-    // const changeData=(type,v)=>{
-    //     if(type=='name'){
-    //         setData({
-    //             ...data,name:v,
-    //         });
-    //     }
-    // }
-
-    const uploadMovie = () => {
-        if (directLink == "") {
-            return alert("Please enter movie direct source link");
-            // return;
-        }
-        const api = `https://streamhgapi.com/api/upload/url?key=30781d7ii5ivwsmmrxxzq&url=${directLink}`;
-        axios.get(api).then((d) => {
-            const file_code = d.data.result.filecode;
-            setData({
-                ...data,
-                embed_link: `${file_code}`,
-
-                // embed_link:`https://streamango.com/embed/${file_code}/`,
+                name: data.name,
+                release_date: data.first_air_date,
+                rating: data.vote_average,
+                image_url: `https://media.themoviedb.org/t/p/w440_and_h660_face${data.poster_path}`,
+                description: data.overview,
             });
         });
     };
+
+
+
 
     // change category
     const changeCategory = (d) => {
@@ -105,11 +73,11 @@ const EditSerie= () => {
     const storeMovie = () => {
         setLoader(true);
         axios
-            .post("/admin/api/update-movie/"+blade_movie.id, data)
+            .post("/admin/api/update-serie/"+blade_movie.id, data)
             .then((d) => {
                 setLoader(false);
                 if (d.data == "success") {
-                    toast.success("movie update successfully");
+                    toast.success("serie updated");
 
                 }
                 console.log(d);
@@ -124,8 +92,6 @@ const EditSerie= () => {
                     }
                 }
             });
-        // toast.info("Please wait... Processing");
-        // toast("hello world");
     };
 
     return (
@@ -201,25 +167,6 @@ const EditSerie= () => {
 
                     {/* Start of col-md-4 sec */}
                     <div className="col-md-4 ">
-                        <div className="form-group">
-                            <label htmlFor="">Enter movie direct source</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                onChange={(e) => setDirectLink(e.target.value)}
-                            />
-                            {data.embed_link != "" && (
-                                <div>{data.embed_link}</div>
-                            )}
-
-                            <button
-                                onClick={uploadMovie}
-                                className="btn btn-primary mt-2"
-                            >
-                                Up load
-                            </button>
-                        </div>
-
 
                              <div className="form-group">
                             <label htmlFor="title">Release Date</label>
@@ -275,7 +222,7 @@ const EditSerie= () => {
 
                     <button disabled={loader} type="submit" className="btn btn-primary mt-3" onClick={storeMovie}>
                        {loader && <BtnLoader /> }
-                            Update Movie
+                            Update Serie
                         </button>
                     </div>
                     {/* End of col-md-4 sec */}
@@ -286,11 +233,11 @@ const EditSerie= () => {
     );
 };
 
-// const rootElement = document.getElementById("root");
-// if (rootElement) {
-//     const root = ReactDOM.createRoot(rootElement);
-//     root.render(<EditSerie />);
-// }
+const rootElement = document.getElementById("root");
+if (rootElement) {
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(<EditSerie />);
+}
 
 
-createRoot(document.getElementById("root")).render(<EditSerie/>);
+// createRoot(document.getElementById("root")).render(<EditSerie/>);

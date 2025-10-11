@@ -20,6 +20,8 @@ Route::group(['middleware' => 'RedirectIfNotAdminAuth'], function () {
     // serie
     Route::resource('/serie','SerieController');
     Route::resource('/serie-epi','SerieEpisodeController');
+    //ads management
+    Route::resource('/ads','AdsController');
 });
 
 

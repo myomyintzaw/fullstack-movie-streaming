@@ -32,6 +32,14 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{route('admin.ads.index')}}">
+                                {{-- <i class="ni ni-atom text-warning"></i> --}}
+                                <i class="fa-solid fa-tv text-warning"></i>
+                                <span class="nav-link-text">ADS Management</span>
+                            </a>
+                        </li>
+
                         <li class="nav-item ">
                             <a class="nav-link active" href="#homeData" data-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="navbar-dashboards">

@@ -255,11 +255,15 @@
 @endif
 
 @yield('js')
+
 {{-- <script>
     // toastr.success('nice');
     toastr.error('nice');
-
 </script> --}}
+
+
+{{-- test ads --}}
+<script type='text/javascript' src='//pl27824395.effectivegatecpm.com/a0/95/29/a09529803f1c1dccc5d89ed4c21a0504.js'></script>
 
 
 </body>

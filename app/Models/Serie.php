@@ -20,7 +20,7 @@ class Serie extends Model
     {
         // return $this->belongsToMany(Category::class,'category_serie');
 
-        return $this->belongsToMany(Category::class, 'category_series', 'serie_id', 'category_id');
+        return $this->belongsToMany(Category::class, 'category_series', 'series_id', 'category_id');
     }
 
     public function episode(){

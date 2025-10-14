@@ -15,8 +15,12 @@
         href="https://cdn.jsdelivr.net/npm/argon-design-system-free@1.2.0/assets/css/argon-design-system.min.css">
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    {{-- toastr  --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     <!-- custom css -->
-    <link rel="stylesheet" href="{{asset('/assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 </head>
 
 <body class="position-relative">
@@ -89,10 +93,10 @@
         </h3>
         <!-- menu -->
         <div class="d-flex align-items-center">
-            <a href="" class="ml-4 text-white">Home</a>
-            <a href="" class="ml-4 text-white">Movies</a>
-            <a href="" class="ml-4 text-white">TV Series </a>
-            <a href="" class="ml-4 text-white">Subscribption </a>
+            <a href="{{ url('/') }}" class="ml-4 text-white">Home</a>
+            <a href="{{ url('/movie') }}" class="ml-4 text-white">Movies</a>
+            <a href="{{ url('/serie') }}" class="ml-4 text-white">TV Series </a>
+            <a href="{{ url('/sub') }}" class="ml-4 text-white">Subscribption </a>
 
             <div class="dropdown ml-4">
                 <span class="text-white" type="button" id="mainMenu" data-toggle="dropdown" aria-haspopup="true"
@@ -100,9 +104,11 @@
                     Category
                 </span>
                 <div class="dropdown-menu" aria-labelledby="mainMenu">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Scifi</a>
-                    <a class="dropdown-item" href="#">Horror</a>
+                    @foreach ($category as $c)
+                        <a class="dropdown-item" href="{{ url('/movie?category=' . $c->slug) }}">{{ $c->name }}</a>
+                    @endforeach
+                    {{-- <a class="dropdown-item" href="#">Scifi</a>
+                    <a class="dropdown-item" href="#">Horror</a> --}}
                 </div>
             </div>
         </div>
@@ -114,9 +120,17 @@
                     Account
                 </span>
                 <div class="dropdown-menu" aria-labelledby="mainMenu">
-                    <a class="dropdown-item" href="#">Login</a>
-                    <a class="dropdown-item" href="#">Create Account</a>
-                    <a class="dropdown-item" href="#">User One</a>
+                    @guest
+                        <a class="dropdown-item" href="{{ url('/login') }}">Login</a>
+                        <a class="dropdown-item" href="{{ url('/register') }}">Create Account</a>
+                    @endguest
+
+                    @auth
+                        <a class="dropdown-item" href="#">Welcome {{auth()->user()->name}} </a>
+                        <a class="dropdown-item" href="{{url('/dashboard')}}">Dashboard</a>
+                        <a class="dropdown-item" href="{{ url('/logout') }}">Logout</a>
+                    @endauth
+
                 </div>
             </div>
         </div>
@@ -151,20 +165,46 @@
 
 
 
-        @yield('content')
+    @yield('content')
 
 
 
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+ {{-- "https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous" --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js">
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
-        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
-        crossorigin="anonymous"></script>
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous">
+    </script>
+
+
+    {{-- toastr --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+    {{-- validation error message --}}
+    @if ($errors->any())
+        @foreach ($errors->all() as $e)
+            <script>
+                toastr.error('{{ $e }}');
+            </script>
+        @endforeach
+    @endif
+
+    {{-- session message --}}
+    @if (session('success'))
+        <script>
+            toastr.success('{{ session('success') }}');
+        </script>
+    @endif
+    @if (session('error'))
+        <script>
+            toastr.error('{{ session('error') }}');
+        </script>
+    @endif
+
 
     <script>
         const showSidebar = () => {
@@ -174,6 +214,12 @@
             $('.mobile-sidebar').removeClass('show-sidebar');
         }
     </script>
+
+
+
+    @yield('js')
+
+
 </body>
 
 </html>

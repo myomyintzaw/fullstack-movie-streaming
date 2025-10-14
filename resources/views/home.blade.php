@@ -8,19 +8,22 @@
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center">
                     <h3 class="text-white">Latest Movies</h3>
-                    <a href="" class="btn btn-outline-yellow">View All</a>
+                    <a href="{{url('/movie')}}" class="btn btn-outline-yellow">View All</a>
                 </div>
             </div>
         </div>
         <!-- movies -->
         <div class="row">
+            @foreach ($latest_movie as $d )
+
             <div class="col-6 col-sm-6 col-md-3 col-lg-2">
+                {{-- https://media.themoviedb.org/t/p/w440_and_h660_face/abf8tHznhSvl9BAElD2cQeRr7do.jpg --}}
                 <div class="movie-card-container position-relative d-flex justify-content-center align-items-center"
-                    style="background-image: url('https://media.themoviedb.org/t/p/w440_and_h660_face/abf8tHznhSvl9BAElD2cQeRr7do.jpg');">
+                    style="background-image: url('{{$d->image}}');">
                     <!-- rating -->
                     <div
                         class="rating position-absolute rounded-circle d-flex justify-content-center align-items-center">
-                        <span class="text-white">7.9</span>
+                        <span class="text-white">{{$d->rating_no}}</span>
                     </div>
                     <!-- play icon -->
                     <div class="play-icon rounded-circle d-flex justify-content-center align-items-center">
@@ -28,8 +31,10 @@
                     </div>
                 </div>
             </div>
+             @endforeach
 
-            <div class="col-6 col-sm-6 col-md-3 col-lg-2">
+
+            {{-- <div class="col-6 col-sm-6 col-md-3 col-lg-2">
                 <div class="movie-card-container position-relative d-flex justify-content-center align-items-center"
                     style="background-image: url('https://media.themoviedb.org/t/p/w440_and_h660_face/abf8tHznhSvl9BAElD2cQeRr7do.jpg');">
                     <!-- rating -->
@@ -100,7 +105,7 @@
                         <i class="fa-regular fa-circle-play text-yellow"></i>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
 
@@ -115,19 +120,22 @@
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center">
                     <h3 class="text-white">Latest TV Series</h3>
-                    <a href="" class="btn btn-outline-yellow">View All</a>
+                    <a href="{{url('/serie')}}" class="btn btn-outline-yellow">View All</a>
                 </div>
             </div>
         </div>
         <!-- movies -->
         <div class="row">
+            @foreach ($latest_serie as $sd )
+
             <div class="col-6 col-sm-6 col-md-3 col-lg-2">
+                {{-- https://media.themoviedb.org/t/p/w440_and_h660_face/abf8tHznhSvl9BAElD2cQeRr7do.jpg --}}
                 <div class="movie-card-container position-relative d-flex justify-content-center align-items-center"
-                    style="background-image: url('https://media.themoviedb.org/t/p/w440_and_h660_face/abf8tHznhSvl9BAElD2cQeRr7do.jpg');">
+                    style="background-image: url('{{$sd->image}}');">
                     <!-- rating -->
                     <div
                         class="rating position-absolute rounded-circle d-flex justify-content-center align-items-center">
-                        <span class="text-white">7.9</span>
+                        <span class="text-white">{{$sd->rating_no}}</span>
                     </div>
                     <!-- play icon -->
                     <div class="play-icon rounded-circle d-flex justify-content-center align-items-center">
@@ -135,8 +143,9 @@
                     </div>
                 </div>
             </div>
+            @endforeach
 
-            <div class="col-6 col-sm-6 col-md-3 col-lg-2">
+            {{-- <div class="col-6 col-sm-6 col-md-3 col-lg-2">
                 <div class="movie-card-container position-relative d-flex justify-content-center align-items-center"
                     style="background-image: url('https://media.themoviedb.org/t/p/w440_and_h660_face/abf8tHznhSvl9BAElD2cQeRr7do.jpg');">
                     <!-- rating -->
@@ -207,7 +216,7 @@
                         <i class="fa-regular fa-circle-play text-yellow"></i>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
 

@@ -16,6 +16,12 @@ class Serie extends Model
         'view_count',
     ];
 
+    protected $appends=['rating_no'];
+
+    public function getRatingNoAttribute(){
+        return number_format($this->rating,1);
+    }
+
     public function category()
     {
         // return $this->belongsToMany(Category::class,'category_serie');

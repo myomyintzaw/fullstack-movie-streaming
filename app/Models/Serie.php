@@ -32,4 +32,9 @@ class Serie extends Model
     public function episode(){
         return $this->hasMany(SerieEpisode::class,'series_id');
     }
+
+
+    public function comment(){
+        return $this->hasMany(SerieComment::class,'series_id');
+    }
 }

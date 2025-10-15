@@ -41,7 +41,7 @@
                        <h5 class="text-secondary p-0 m-0">By Category</h5>
                        <div class="mt-3">
                         @foreach ($category as $c )
-                             <a href="{{{url('/movie?slug='.$c->slug)}}}" class="btn btn-outline-warning m-1">{{$c->name}}</a>
+                             <a href="{{{url('/movie?is_search=y&category='.$c->slug)}}}" class="btn btn-outline-warning m-1">{{$c->name}}</a>
                         @endforeach
                        </div>
                     </div>
@@ -51,8 +51,8 @@
                     <div class="card-body p-0 m-0 p-3">
                        <h5 class="text-secondary p-0 m-0">By Rating</h5>
                        <div class="mt-3">
-                        <div class="btn btn-outline-primary">5 > rating</div>
-                        <div class="btn btn-outline-primary">5 &lt; rating</div>
+                        <a href="{{url('/movie?is_search=y&rating=belowfive')}}" class="btn btn-outline-primary">5 &gt; rating</a>  <!-- 5 > rating -->
+                        <a href="{{url('/movie?is_search=y&rating=abovefive')}}" class="btn btn-outline-primary">5 &lt; rating</a>
                        </div>
                     </div>
                 </div>
@@ -66,6 +66,7 @@
 
             @foreach ($data as $d )
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
+                <a href="{{url('/movie/'.$d->slug)}}">
                 <div class="movie-card-container position-relative d-flex justify-content-center align-items-center"
                     style="background-image: url('{{$d->image}}');">
                     <!-- rating -->
@@ -78,6 +79,7 @@
                         <i class="fa-regular fa-circle-play text-yellow"></i>
                     </div>
                 </div>
+                </a>
             </div>
              @endforeach
 
@@ -87,6 +89,7 @@
                 {{$data->links()}}
                 </div>
              </div>
+
 
 
 

@@ -17,6 +17,7 @@
             @foreach ($latest_movie as $d )
 
             <div class="col-6 col-sm-6 col-md-3 col-lg-2">
+                <a href="{{url('/movie/'.$d->slug)}}">
                 {{-- https://media.themoviedb.org/t/p/w440_and_h660_face/abf8tHznhSvl9BAElD2cQeRr7do.jpg --}}
                 <div class="movie-card-container position-relative d-flex justify-content-center align-items-center"
                     style="background-image: url('{{$d->image}}');">
@@ -30,6 +31,7 @@
                         <i class="fa-regular fa-circle-play text-yellow"></i>
                     </div>
                 </div>
+                </a>
             </div>
              @endforeach
 
@@ -129,6 +131,7 @@
             @foreach ($latest_serie as $sd )
 
             <div class="col-6 col-sm-6 col-md-3 col-lg-2">
+                <a href="{{url('/serie/'.$d->slug)}}">
                 {{-- https://media.themoviedb.org/t/p/w440_and_h660_face/abf8tHznhSvl9BAElD2cQeRr7do.jpg --}}
                 <div class="movie-card-container position-relative d-flex justify-content-center align-items-center"
                     style="background-image: url('{{$sd->image}}');">
@@ -142,6 +145,7 @@
                         <i class="fa-regular fa-circle-play text-yellow"></i>
                     </div>
                 </div>
+                </a>
             </div>
             @endforeach
 

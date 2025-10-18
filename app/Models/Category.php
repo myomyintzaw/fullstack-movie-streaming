@@ -13,8 +13,8 @@ class Category extends Model
     }
 
     public function serie(){
-        return $this->belongsToMany(Serie::class,'category_serie');
+        // return $this->belongsToMany(Serie::class,'category_series');
 
-        // return $this->belongsToMany(Serie::class,'category_series','category_id','series_id');
+        return $this->belongsToMany(Serie::class,'category_series','category_id','series_id');
     }
 }

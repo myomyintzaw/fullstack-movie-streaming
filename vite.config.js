@@ -15,6 +15,7 @@ export default defineConfig({
         'resources/js/Serie/CreateSerie.jsx',
         // for website component
         'resources/js/Web/Movie.jsx',
+        'resources/js/Web/Serie.jsx',
 
     ]),
         react(),

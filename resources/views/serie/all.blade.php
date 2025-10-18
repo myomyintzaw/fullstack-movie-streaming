@@ -66,7 +66,7 @@
 
             @foreach ($data as $d )
             <div class="col-6 col-sm-6 col-md-3 col-lg-3">
-                <a href="{{url('/movie/'.$d->slug)}}">
+                <a href="{{url('/serie/'.$d->slug)}}">
                 <div class="movie-card-container position-relative d-flex justify-content-center align-items-center"
                     style="background-image: url('{{$d->image}}');">
                     <!-- rating -->

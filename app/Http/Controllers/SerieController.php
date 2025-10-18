@@ -45,5 +45,28 @@ class SerieController extends Controller
 
     }
 
-    public function detail() {}
+
+
+    public function detail($slug) {
+
+        $data = Serie::where('slug', $slug)->with('comment.user', 'category')
+            ->withCount('comment', 'like', 'serieSave')
+            ->first();
+        if (!$data) {
+            return redirect('/serie')->with('error', 'data not found');
+        }
+
+
+        // pull relate movie category
+        $category = Category::whereHas('serie', function ($q) use ($data) {
+            $q->where('category_series.series_id', $data->id);
+        })->pluck('id');
+
+        $related = Serie::whereHas('category', function ($q) use ($category) {
+            $q->whereIn('category_series.category_id', $category);
+        })->where('id', '!=', $data->id) // ✅ exclude the current movie
+        ->inRandomOrder()->take(4)->get();
+
+        return view('serie.detail', compact('data', 'related'));
+    }
 }

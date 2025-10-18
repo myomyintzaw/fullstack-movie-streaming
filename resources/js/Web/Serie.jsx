@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BtnLoader from "../Components/BtnLoader";
 //blade_data
-const Movie = () => {
+const Serie = () => {
     const [comments, setComments] = useState(blade_data.comment);
     const [comment, setComment] = useState("");
     const [commentLoader, setCommentLoader] = useState(false);
@@ -154,13 +154,13 @@ const Movie = () => {
                             controls=""
                         /> */}
 
-                        <iframe
+                        {/* <iframe
                             allowFullScreen={true}
                             className="w-100 "
                             src={blade_data.embed_player}
                             frameBorder="0"
                             style={{ height: 315 }}
-                        ></iframe>
+                        ></iframe> */}
 
                         {/* <div className="bg-dark p-2 rounded">
                             <span className="btn btn-yellow">1</span>
@@ -352,12 +352,6 @@ const Movie = () => {
     );
 };
 
-// export default Movie
 
-// const rootElement = document.getElementById("movieDetail");
-// if (rootElement) {
-//     const root = ReactDOM.createRoot(rootElement);
-//     root.render(<Movie/>);
-// }
 
-createRoot(document.getElementById("movieDetail")).render(<Movie />);
+createRoot(document.getElementById("serieDetail")).render(<Serie />);

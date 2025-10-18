@@ -10,7 +10,7 @@
 
  <!-- detail -->
     <div class="container-fluid px-5 mt-4 movie-detail" id="movieDetail">
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-12">
                 <h2 class="text-white">Out of My Mind (2024)</h2>
             </div>
@@ -224,7 +224,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 @endsection
@@ -233,9 +233,13 @@
 @section('js')
 <script>
     const blade_data=@json($data);
+    const blade_auth=@json(auth()->user());
+    const blade_related=@json($related);
 </script>
+
   @viteReactRefresh
   @vite('resources/js/Web/Movie.jsx')
+
 <!-- plyr -->
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     <script>

@@ -8,7 +8,7 @@ class SerieEpisode extends Model
 {
     protected $fillable=['slug','series_id','episode_no','embed_link'];
 
-    public function serie(){
+    public function series(){
         return $this->belongsTo(Serie::class,'series_id','id',);
     }
 

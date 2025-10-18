@@ -37,5 +37,9 @@ Route::namespace("App\Http\Controllers")->group(function () {
     //authenticated routes
     Route::group(['middleware'=>'RedirectIfNotAuth'], function () {
         Route::get('/logout', 'AuthController@logout');
+        // movie routes
+        Route::post('/api/store-movie-comment','MovieController@storeComment');
+        Route::post('/api/store-movie-like','MovieController@like');
+        Route::post('/api/store-movie-save','MovieController@saveMovie');
     });
 });

@@ -10,7 +10,7 @@ const Serie = () => {
     const [comment, setComment] = useState("");
     const [commentLoader, setCommentLoader] = useState(false);
     const [likeCount, setLikeCount] = useState(blade_data.like_count);
-    const [saveCount, setSaveCount] = useState(blade_data.movie_save_count);
+    const [saveCount, setSaveCount] = useState(blade_data.serie_save_count);
     const [commentCount, setCommentCount] = useState(blade_data.comment_count);
 
     const storeComment = () => {
@@ -19,7 +19,7 @@ const Serie = () => {
         }
         setCommentLoader(true);
         axios
-            .post("/api/store-movie-comment", {
+            .post("/api/store-serie-comment", {
                 comment,
                 movie_id: blade_data.id,
             })
@@ -36,7 +36,7 @@ const Serie = () => {
 
     const storeLove = () => {
         axios
-            .post("/api/store-movie-like", { movie_id: blade_data.id })
+            .post("/api/store-serie-like", { movie_id: blade_data.id })
             .then((d) => {
                 if (d.data == "already_like") {
                     toast.error("you already like");
@@ -50,10 +50,10 @@ const Serie = () => {
 
     const saveMovie = () => {
         axios
-            .post("/api/store-movie-save", { movie_id: blade_data.id })
+            .post("/api/store-serie-save", { movie_id: blade_data.id })
             .then((d) => {
                 if (d.data == "already_save") {
-                    toast.error("You already save movie");
+                    toast.error("You already save serie");
                 }
                 if (d.data == "success") {
                     setSaveCount(saveCount + 1);
@@ -162,11 +162,11 @@ const Serie = () => {
                             style={{ height: 315 }}
                         ></iframe> */}
 
-                        {/* <div className="bg-dark p-2 rounded">
+                        <div className="bg-dark p-2 rounded">
                             <span className="btn btn-yellow">1</span>
                             <span className="btn btn-outline-yellow">2</span>
                             <span className="btn btn-outline-yellow">3</span>
-                        </div> */}
+                        </div>
                     </div>
                     {/* movie tabs */}
                     <div className="container-fluid">

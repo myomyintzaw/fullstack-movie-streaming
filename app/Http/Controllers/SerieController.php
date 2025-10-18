@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Serie;
+use App\Models\SerieComment;
+use App\Models\SerieLike;
+use App\Models\SerieSave;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SerieController extends Controller
 {
@@ -69,4 +73,68 @@ class SerieController extends Controller
 
         return view('serie.detail', compact('data', 'related'));
     }
+
+
+
+
+    public function storeComment(Request $request)
+    {
+        //check auth
+        if (!Auth::check()) {
+            return 'not auth';
+        }
+
+        $created_comment =SerieComment::create([
+            'series_id' => $request->movie_id,
+            'comment' => $request->comment,
+            'user_id' => Auth::id(),
+        ]);
+
+        $data = SerieComment::where('id', $created_comment->id)->with('user')->first();
+
+        return response()->json($data);
+    }
+
+    public function like(Request $request)
+    {
+        //check auth
+        if (!Auth::check()) {
+            return 'not auth';
+        }
+        //check already like
+        $checkLike = SerieLike::where('user_id', Auth::id())->where('series_id', $request->movie_id)->first();
+        if ($checkLike) {
+            return 'already_like';
+        }
+
+        SerieLike::create([
+            'series_id' => $request->movie_id,
+            'user_id' => Auth::id(),
+        ]);
+        return 'success';
+    }
+
+
+    public function saveMovie(Request $request)
+    {
+
+        //check auth
+        if (!Auth::check()) {
+            return 'not auth';
+        }
+        //check already like
+        $checkLike = SerieSave::where('user_id', Auth::id())->where('series_id', $request->movie_id)->first();
+        if ($checkLike) {
+            return 'already_save';
+        }
+
+        SerieSave::create([
+            'series_id' => $request->movie_id,
+            'user_id' => Auth::id(),
+        ]);
+        return 'success';
+    }
+
+
+
 }

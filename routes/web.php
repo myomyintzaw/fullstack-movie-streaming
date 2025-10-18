@@ -41,5 +41,9 @@ Route::namespace("App\Http\Controllers")->group(function () {
         Route::post('/api/store-movie-comment','MovieController@storeComment');
         Route::post('/api/store-movie-like','MovieController@like');
         Route::post('/api/store-movie-save','MovieController@saveMovie');
+        // serie routes
+        Route::post('/api/store-serie-comment','SerieController@storeComment');
+        Route::post('/api/store-serie-like','SerieController@like');
+        Route::post('/api/store-serie-save','SerieController@saveMovie');
     });
 });

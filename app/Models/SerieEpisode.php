@@ -8,6 +8,13 @@ class SerieEpisode extends Model
 {
     protected $fillable=['slug','series_id','episode_no','embed_link'];
 
+    protected $appends=['embed_player'];
+
+      public function getEmbedPlayerAttribute()
+    {
+        return 'https://davioad.com/e/' . $this->embed_link;
+    }
+
     public function series(){
         return $this->belongsTo(Serie::class,'series_id','id',);
     }

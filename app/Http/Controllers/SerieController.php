@@ -53,7 +53,7 @@ class SerieController extends Controller
 
     public function detail($slug) {
 
-        $data = Serie::where('slug', $slug)->with('comment.user', 'category')
+      $data = Serie::where('slug', $slug)->with('comment.user', 'category','episode')
             ->withCount('comment', 'like', 'serieSave')
             ->first();
         if (!$data) {

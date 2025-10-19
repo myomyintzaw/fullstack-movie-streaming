@@ -12,6 +12,9 @@ const Serie = () => {
     const [likeCount, setLikeCount] = useState(blade_data.like_count);
     const [saveCount, setSaveCount] = useState(blade_data.serie_save_count);
     const [commentCount, setCommentCount] = useState(blade_data.comment_count);
+    //serie episode
+    const [epi, setEpi] = useState(blade_data.episode);
+    const [selectedEpi, setSelectedEpi] = useState(blade_data.episode[0]);
 
     const storeComment = () => {
         if (comment == "") {
@@ -154,18 +157,30 @@ const Serie = () => {
                             controls=""
                         /> */}
 
-                        {/* <iframe
+                        <iframe
                             allowFullScreen={true}
                             className="w-100 "
-                            src={blade_data.embed_player}
+                            src={selectedEpi.embed_player}
                             frameBorder="0"
                             style={{ height: 315 }}
-                        ></iframe> */}
+                        ></iframe>
 
                         <div className="bg-dark p-2 rounded">
-                            <span className="btn btn-yellow">1</span>
-                            <span className="btn btn-outline-yellow">2</span>
-                            <span className="btn btn-outline-yellow">3</span>
+                            {epi.map((d) => (
+                                <button
+                                    key={d.id}
+                                    className={`btn ${
+                                        selectedEpi.id == d.id
+                                            ? 'btn-yellow'
+                                            : 'btn-outline-yellow'
+                                    }`}
+                                    onClick={() => setSelectedEpi(d)}
+                                >
+                                    {d.episode_no}
+                                </button>
+                            ))}
+                            {/* <span className="btn btn-outline-yellow">2</span>
+                            <span className="btn btn-outline-yellow">3</span> */}
                         </div>
                     </div>
                     {/* movie tabs */}
@@ -351,7 +366,5 @@ const Serie = () => {
         </div>
     );
 };
-
-
 
 createRoot(document.getElementById("serieDetail")).render(<Serie />);

@@ -63,6 +63,26 @@ class AuthController extends Controller
         }
         return redirect()->back()->with('error', 'Invalid credentials wrong email and password');
 
+    }
 
+
+
+    public function changePassword(){
+        $current_password=request()->current_password;
+        $new_password=request()->new_password;
+
+        //check current password
+        $hashed_password=User::where('id',Auth::id())->first()->password;
+        $check_password=Hash::check($current_password,$hashed_password);
+        if(!$check_password){
+            return 'wrong_current';
+        }
+
+        //update password or set new password
+        User::where('id',Auth::id())->update([
+            'password'=>Hash::make($new_password),
+        ]);
+
+        return 'success';
     }
 }

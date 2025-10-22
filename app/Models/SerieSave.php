@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class SerieSave extends Model
 {
      protected $fillable=['user_id','series_id'];
+
+     public function serie(){
+        return $this->belongsTo(Serie::class,'series_id','id');
+     }
 }

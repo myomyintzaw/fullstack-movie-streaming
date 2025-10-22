@@ -34,8 +34,18 @@ Route::namespace("App\Http\Controllers")->group(function () {
     Route::get('/serie','SerieController@all');
     Route::get('/serie/{slug}','SerieController@detail');
 
+    //ads
+    Route::get('/sub','SubController@index');
+
+
     //authenticated routes
     Route::group(['middleware'=>'RedirectIfNotAuth'], function () {
+        //dashboard
+        Route::get('/dashboard','HomeController@dashboard');
+        Route::get('/api/get-saved-movies','MovieController@getSavedMovies');
+        Route::get('/api/get-saved-series','SerieController@getSavedSeries');
+        Route::post('/api/change-password','AuthController@changePassword');
+        //auth routes logout
         Route::get('/logout', 'AuthController@logout');
         // movie routes
         Route::post('/api/store-movie-comment','MovieController@storeComment');

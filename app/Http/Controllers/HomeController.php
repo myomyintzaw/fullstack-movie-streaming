@@ -15,4 +15,9 @@ class HomeController extends Controller
 
         return view('home',compact('latest_movie','latest_serie'));
     }
+
+    public function dashboard(){
+
+        return view('dashboard');
+    }
 }

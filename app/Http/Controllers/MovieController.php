@@ -131,4 +131,9 @@ class MovieController extends Controller
         ]);
         return 'success';
     }
+
+    public function getSavedMovies(){
+        $data=MovieSave::where('user_id',Auth::id())->with('movie')->orderBy('id','desc')->get();
+        return response()->json($data);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Ads;
 use App\Models\Category;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -24,5 +25,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFour();
         View::share('category',Category::take(10)->get());
+        View::share('ads_links',Ads::all());
     }
 }

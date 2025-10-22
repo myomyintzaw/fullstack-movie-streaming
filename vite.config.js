@@ -16,6 +16,10 @@ export default defineConfig({
         // for website component
         'resources/js/Web/Movie.jsx',
         'resources/js/Web/Serie.jsx',
+        //dashboard
+        'resources/js/Web/Dashboard.jsx',
+
+
 
     ]),
         react(),

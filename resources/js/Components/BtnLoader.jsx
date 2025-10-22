@@ -1,10 +1,10 @@
 import React from "react";
 
-const BtnLoader = () => {
+const BtnLoader = ({ bgcolor }) => {
     return (
         <div className="d-inline mb-2">
             <span
-                class="spinner-grow spinner-grow-sm"
+                class={`spinner-grow  spinner-grow-sm ${bgcolor ? bgcolor : ""}`}
                 role="status"
                 aria-hidden="true"
             ></span>

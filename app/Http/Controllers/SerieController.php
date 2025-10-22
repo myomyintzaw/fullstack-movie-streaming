@@ -136,5 +136,12 @@ class SerieController extends Controller
     }
 
 
+    public function getSavedSeries()
+    {
+        $data = SerieSave::where('user_id', Auth::id())->with('serie')->get();
+        return response()->json($data);
+    }
+
+
 
 }

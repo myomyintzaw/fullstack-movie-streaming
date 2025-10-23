@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subs', function (Blueprint $table) {
+        Schema::create('user_remain_days', function (Blueprint $table) {
             $table->id();
-            $table->string('slug');
-            $table->string('name');
-            $table->string('total_day');
-            $table->double('price');
+            $table->date('expire_date');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subs');
+        Schema::dropIfExists('user_remain_days');
     }
 };

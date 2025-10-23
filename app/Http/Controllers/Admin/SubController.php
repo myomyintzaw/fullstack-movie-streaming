@@ -4,15 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ads;
+use App\Models\Sub;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SubController extends Controller
 {
      public function index()
     {
-        $data=Ads::orderBy('id','desc')->get();
+        $data=Sub::all();
         // dd($data -> toArray());
-        return view('admin.ads.index',compact('data'));
+        return view('admin.sub.index',compact('data'));
     }
 
     /**
@@ -20,7 +22,7 @@ class SubController extends Controller
      */
     public function create()
     {
-        return view('admin.ads.create');
+        return view('admin.sub.create');
     }
 
 
@@ -29,17 +31,19 @@ class SubController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
         $request->validate([
-          'ads_type'=>"required",
-          'ads_script'=>"required",
+          'name'=>"required",
+          'total_day'=>"required",
+          'price'=>"required",
         ]);
 
-        Ads::create([
-            'ads_type'=>$request->ads_type,
-            'ads_script'=>$request->ads_script,
-            'on_off'=>$request->on_off,
+        Sub::create([
+            'slug'=>Str::slug($request->name),
+            'name'=>$request->name,
+            'total_day'=>$request->total_day,
+            'price'=>$request->price,
         ]);
+
       return redirect()->back()->with('success','stored');
     }
 
@@ -57,8 +61,8 @@ class SubController extends Controller
      */
     public function edit(string $id)
     {    // return $id;
-        $data=Ads::find($id);
-        return view('admin.ads.edit',compact('data'));
+        $data=Sub::find($id);
+        return view('admin.sub.edit',compact('data'));
     }
 
     /**
@@ -66,11 +70,10 @@ class SubController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // return $request->all();
-       Ads::where('id',$id)->update([
-            'ads_type'=>$request->ads_type,
-            'ads_script'=>$request->ads_script,
-            'on_off'=>$request->on_off,
+       Sub::where('id',$id)->update([
+            'name'=>$request->name,
+            'total_day'=>$request->total_day,
+            'price'=>$request->price,
         ]);
         return redirect()->back()->with('success','Category Updated Successfully');
     }
@@ -80,7 +83,7 @@ class SubController extends Controller
      */
     public function destroy(string $id)
     {
-        Ads::where('id',$id)->delete();
+        Sub::where('id',$id)->delete();
         return back()->with('success','Category Deleted Successfully');
     }
 }

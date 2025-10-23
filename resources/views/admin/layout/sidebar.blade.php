@@ -40,7 +40,14 @@
                             </a>
                         </li>
 
-                        <li class="nav-item ">
+                         <li class="nav-item">
+                            <a class="nav-link active" href="{{route('admin.sub.index')}}">
+                                <i class="ni ni-diamond text-warning"></i>
+                                <span class="nav-link-text"> Packages</span>
+                            </a>
+                        </li>
+
+                        {{-- <li class="nav-item ">
                             <a class="nav-link active" href="#homeData" data-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="navbar-dashboards">
                                 <i class="ni ni-diamond text-warning"></i>
@@ -60,6 +67,6 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
 
                     </ul>

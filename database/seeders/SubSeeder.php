@@ -18,19 +18,19 @@ class SubSeeder extends Seeder
                 'slug'=>'30-day',
                 'name'=>'Small Plan',
                 'price'=>'5000',
-                'total-day'=>'30',
+                'total_day'=>'30',
             ],
             [
                 'slug'=>'60-day',
                 'name'=>'Medium Plan',
                 'price'=>'10000',
-                'total-day'=>'60',
+                'total_day'=>'60',
             ],
             [
                 'slug'=>'90-day',
                 'name'=>'Mega Plan',
                 'price'=>'14000',
-                'total-day'=>'90',
+                'total_day'=>'90',
             ],
         ];
         // \App\Models\Sub::insert($data);
@@ -39,7 +39,7 @@ class SubSeeder extends Seeder
                 'slug'=>$item['slug'],
                 'name'=>$item['name'],
                 'price'=>$item['price'],
-                'total-day'=>$item['total-day'],
+                'total_day'=>$item['total_day'],
             ]);
 
         }

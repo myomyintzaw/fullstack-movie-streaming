@@ -9,7 +9,7 @@ class Sub extends Model
     protected $fillable = [
         'slug',
         'name',
-        'total-day',
+        'total_day',
         'price',
     ];
 }

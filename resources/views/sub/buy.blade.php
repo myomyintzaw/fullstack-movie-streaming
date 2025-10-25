@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-group">
                             <label for="" class="text-white">Enter Payment Phone</label>
-                            <input type="number" name="payment_phone" class="form-control">
+                            <input type="tel" name="payment_phone" class="form-control">
                         </div>
                         {{-- <div class="form-group">
                             <label for="">Enter Payment Screenshot</label>

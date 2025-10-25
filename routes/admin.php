@@ -23,6 +23,8 @@ Route::group(['middleware' => 'RedirectIfNotAdminAuth'], function () {
     //ads management
     Route::resource('/ads','AdsController');
     Route::resource('/sub','SubController');
+    Route::get('/sub-buy','SubController@showBuyList');
+    // Route::get('/sub-buy','SubController@subBuy')->name('sub-buy');
 });
 
 

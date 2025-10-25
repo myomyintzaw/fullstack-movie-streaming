@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class BuyPackage extends Model
 {
     protected $fillable=[
+        'user_id',
         'payment_name',
         'payment_no',
         'payment_image',
@@ -15,4 +16,8 @@ class BuyPackage extends Model
         'package_name',
         'status',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class,'user_id','id');
+    }
 }

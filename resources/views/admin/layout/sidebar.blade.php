@@ -47,6 +47,14 @@
                             </a>
                         </li>
 
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{url('admin/sub-buy')}}">
+                                <i class="fa-solid fa-boxes-packing text-warning"></i>
+                                <span class="nav-link-text"> Packages Buy</span>
+                            </a>
+                        </li>
+
                         {{-- <li class="nav-item ">
                             <a class="nav-link active" href="#homeData" data-toggle="collapse" role="button"
                                 aria-expanded="false" aria-controls="navbar-dashboards">

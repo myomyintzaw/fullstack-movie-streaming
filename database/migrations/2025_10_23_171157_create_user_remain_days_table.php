@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_remain_days', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->date('expire_date');
             $table->timestamps();
         });

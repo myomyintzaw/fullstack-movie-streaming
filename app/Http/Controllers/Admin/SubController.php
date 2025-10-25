@@ -4,17 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ads;
+use App\Models\BuyPackage;
 use App\Models\Sub;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class SubController extends Controller
 {
-     public function index()
+    public function showBuyList()
     {
-        $data=Sub::all();
+        $data = BuyPackage::orderBy('id', 'desc')->with('user')->paginate(12);
+        return view('admin.sub.buy', compact('data'));
+    }
+
+
+    public function index()
+    {
+        $data = Sub::all();
         // dd($data -> toArray());
-        return view('admin.sub.index',compact('data'));
+        return view('admin.sub.index', compact('data'));
     }
 
     /**
@@ -32,19 +40,19 @@ class SubController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-          'name'=>"required",
-          'total_day'=>"required",
-          'price'=>"required",
+            'name' => "required",
+            'total_day' => "required",
+            'price' => "required",
         ]);
 
         Sub::create([
-            'slug'=>Str::slug($request->name),
-            'name'=>$request->name,
-            'total_day'=>$request->total_day,
-            'price'=>$request->price,
+            'slug' => Str::slug($request->name),
+            'name' => $request->name,
+            'total_day' => $request->total_day,
+            'price' => $request->price,
         ]);
 
-      return redirect()->back()->with('success','stored');
+        return redirect()->back()->with('success', 'stored');
     }
 
     /**
@@ -61,8 +69,8 @@ class SubController extends Controller
      */
     public function edit(string $id)
     {    // return $id;
-        $data=Sub::find($id);
-        return view('admin.sub.edit',compact('data'));
+        $data = Sub::find($id);
+        return view('admin.sub.edit', compact('data'));
     }
 
     /**
@@ -70,12 +78,12 @@ class SubController extends Controller
      */
     public function update(Request $request, string $id)
     {
-       Sub::where('id',$id)->update([
-            'name'=>$request->name,
-            'total_day'=>$request->total_day,
-            'price'=>$request->price,
+        Sub::where('id', $id)->update([
+            'name' => $request->name,
+            'total_day' => $request->total_day,
+            'price' => $request->price,
         ]);
-        return redirect()->back()->with('success','Category Updated Successfully');
+        return redirect()->back()->with('success', 'Category Updated Successfully');
     }
 
     /**
@@ -83,7 +91,7 @@ class SubController extends Controller
      */
     public function destroy(string $id)
     {
-        Sub::where('id',$id)->delete();
-        return back()->with('success','Category Deleted Successfully');
+        Sub::where('id', $id)->delete();
+        return back()->with('success', 'Category Deleted Successfully');
     }
 }

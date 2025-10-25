@@ -38,6 +38,7 @@ Route::namespace("App\Http\Controllers")->group(function () {
     Route::get('/sub','SubController@index');
     Route::get('/buy-package/{slug}','SubController@buyPackage');
     Route::post('/buy-package/{slug}','SubController@buyPackageStore');
+    Route::get('/change_status','SubController@changeStatus');
 
 
     //authenticated routes

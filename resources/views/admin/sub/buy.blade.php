@@ -42,12 +42,12 @@
             <td class="d-flex">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#id{{$d->id}}">Payment info</button>
 
-                <form action="{{url('/admin/change-status')}}" class="d-inline d-flex" method="post">
+                <form action="{{url('/admin/change-status')}}" class="d-inline d-flex">
                     <input type="hidden" name="buy_package_id" value="{{$d->id}}">
                     <select name="status" id="" class="form-control form-control-sm">
                         <option value="pending">Pending</option>
-                        <option value="pending">Accepted</option>
-                        <option value="pending">Rejected</option>
+                        <option value="success">Accepted</option>
+                        <option value="error">Rejected</option>
                     </select>
                     <input type="submit" value="Change" class="btn btn-info btn-sm ml-2">
                 </form>

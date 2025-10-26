@@ -151,7 +151,7 @@
                 </p>
 
                 <div class="text-center mt-1">
-                    <a href="/plan" class="btn btn-outline-yellow">
+                    <a href="{{ url('/sub') }}" class="btn btn-outline-yellow">
                         <h6 class="d-inline text-yellow p-0 m-0 ">
                             <i class="fa-solid fa-right-long"></i> Subscribption
                         </h6>
@@ -219,7 +219,8 @@
 
     @yield('js')
 
-    // for ads scripts
+
+     
     @foreach ($ads_links as $d)
         {!! $d->ads_script !!}
     @endforeach

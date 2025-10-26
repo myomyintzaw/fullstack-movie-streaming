@@ -25,6 +25,8 @@ Route::group(['middleware' => 'RedirectIfNotAdminAuth'], function () {
     Route::resource('/sub','SubController');
     Route::get('/sub-buy','SubController@showBuyList');
     // Route::get('/sub-buy','SubController@subBuy')->name('sub-buy');
+    Route::get('/change-status','SubController@changeStatus');
+
 });
 
 

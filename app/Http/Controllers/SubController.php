@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BuyPackage;
 use App\Models\Sub;
+use App\Models\UserRemainDay;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,13 +15,18 @@ class SubController extends Controller
         $user_id = Auth::id();
         // $data = BuyPackage::where('user_id', $user_id)->where('status','success')->get();
         $data = BuyPackage::where('user_id', $user_id)->orderBy('id','desc')->get();
-        return response()->json($data);
+        $expire_data=UserRemainDay::where('user_id',$user_id)->first();
+        // return response()->json($data);
 
         return response()->json([
             'status' => 'success',
             'data' => $data,
-        ]);
+            'expire_data'=>$expire_data
+        ],);
     }
+
+
+    
 
     public function index()
     {

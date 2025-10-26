@@ -9,7 +9,8 @@ const Master = ({ children }) => {
         <>
             <div className="row">
                 <div className="col-4 ">
-                    <ul className="list-group border border-danger border-3 radius-10">
+                {/* style={{ border: '0px solid ', overflow: 'hidden' }}  border border-danger border-1 overflow-hidden*/}
+                    <ul className="list-group  rounded-3xl  bg-gray-800" >
                         <li
                             className={`list-group-item  border-danger bg-warning text-white ${location.pathname == "/"
                                     ? "bg-primary"
@@ -34,21 +35,21 @@ const Master = ({ children }) => {
                                 className="fa-solid fa-clapperboard mx-2"
                                 style={{ color: "#d4e91f" }}
                             ></i>{" "}
-                            Save Movie
+                            View Save Movie
                         </li>
                         {/* #bed227 */}
                         <li
-                            className={`list-group-item  border-danger bg-warning text-white ${location.pathname == "/save-serie"
+                            className={`list-group-item  border-danger bg-warning  text-white ${location.pathname == "/save-serie"
                                     ? "bg-primary"
                                     : "bg-transparent"
                                 }`}
                             onClick={() => go("/save-serie")}
                         >
                             <i
-                                className="fa-solid fa-film mx-2"
+                                className="fa-solid fa-film mx-2 "
                                 style={{ color: "#d4e91f" }}
                             ></i>{" "}
-                            Save Serie
+                            My Save Series
                         </li>
                         <li
                             className={`list-group-item  border-danger bg-warning text-white ${location.pathname == "/setting"

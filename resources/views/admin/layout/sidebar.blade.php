@@ -34,8 +34,7 @@
 
                         <li class="nav-item">
                             <a class="nav-link active" href="{{route('admin.ads.index')}}">
-                                {{-- <i class="ni ni-atom text-warning"></i> --}}
-                                <i class="fa-solid fa-tv text-warning"></i>
+                               <i class="fa-brands fa-buysellads text-warning"></i>
                                 <span class="nav-link-text">ADS Management</span>
                             </a>
                         </li>

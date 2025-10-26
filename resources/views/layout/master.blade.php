@@ -220,7 +220,7 @@
     @yield('js')
 
 
-     
+
     @foreach ($ads_links as $d)
         {!! $d->ads_script !!}
     @endforeach

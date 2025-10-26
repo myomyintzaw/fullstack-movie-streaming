@@ -1,18 +1,32 @@
-import React, { use } from "react";
+import React, { useEffect,useState } from "react";
 import Master from "./Layout/Master";
 import axios from "axios";
+import LoadingComponent from '../../Components/BtnLoader';
 
 const Sub = () => {
     const [data, setData] = React.useState([]);
+    const [expireData,setExpireData]=useState([]);
+    const [loader,setLoader]=useState(true);
     React.
     useEffect(() => {
-      axios.get("/api/buy-package-list").then(d => {
-        setData(d.data);
-        // console.log(d.data);
+      axios.get("/api/buy-package-list").then((d) => {
+        setLoader(false);
+        setData(d.data.data);
+        setExpireData(d.data.expire_data);
+        // console.log(d.data.data);
       });
     }, []);
     return <Master>
-        <table className="table table-striped">
+    {loader && (<div className="p-5 d-flex align-items-center justify-content-center"><LoadingComponent bgcolor={'bg-green'}  /></div>)}
+
+
+     {!loader && (
+        <>
+      <div>
+        <span className="btn btn-outline-warning">Expire At:{" "} {expireData? expireData.expire_date : "No Active Plan"}</span>
+      </div>
+
+        <table className="table table-striped mt-3">
         <thead>
             <tr>
                 <th>Package Name</th>
@@ -38,6 +52,10 @@ const Sub = () => {
 
             </tbody>
         </table>
+        </>
+
+     )}
+
     </Master>;
 };
 

@@ -23,7 +23,7 @@ const Sub = () => {
      {!loader && (
         <>
       <div>
-        <span className="btn btn-outline-warning">Expire At:{" "} {expireData? expireData.expire_date : "No Active Plan"}</span>
+        <span className="btn btn-outline-warning">Expire At:{" "} {expireData !='no_active_plan' ? expireData.expire_date : "No Active Plan"}</span>
       </div>
 
         <table className="table table-striped mt-3">

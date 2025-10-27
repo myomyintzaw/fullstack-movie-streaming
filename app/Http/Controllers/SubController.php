@@ -14,19 +14,31 @@ class SubController extends Controller
     {
         $user_id = Auth::id();
         // $data = BuyPackage::where('user_id', $user_id)->where('status','success')->get();
-        $data = BuyPackage::where('user_id', $user_id)->orderBy('id','desc')->get();
-        $expire_data=UserRemainDay::where('user_id',$user_id)->first();
+        $data = BuyPackage::where('user_id', $user_id)->orderBy('id', 'desc')->get();
+        $expire_data = UserRemainDay::where('user_id', $user_id)->first();
         // return response()->json($data);
+
+        //check expire
+        if(!$expire_data){
+            $expire_data='no_active_plan';
+        }
+        if (isset($expire_data->expire_date)) {
+            $today = date('Y-m-d');
+            $expire_date = $expire_data->expire_date;
+            if ($today > $expire_date) {
+                $expire_data = 'no_active_plan';
+            }
+        }
 
         return response()->json([
             'status' => 'success',
             'data' => $data,
-            'expire_data'=>$expire_data
+            'expire_data' => $expire_data
         ],);
     }
 
 
-    
+
 
     public function index()
     {
@@ -79,5 +91,4 @@ class SubController extends Controller
 
         return redirect('/')->with('success', 'Package purchase request submitted successfully');
     }
-
 }

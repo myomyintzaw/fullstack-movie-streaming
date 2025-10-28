@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AuthController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -12,6 +13,10 @@ Route::view('/admin/login', 'AuthController@showLogin');
 // Route::get('/admin/login',[AuthController::class,'showLogin']);
 // Route::get('/admin/login',[App\Http\Controllers\Admin\AuthController::class,'showLogin']);
 
+
+Route::get('/test',function(){
+return Auth::user();
+});
 
 Route::namespace("App\Http\Controllers")->group(function () {
     //auth routes

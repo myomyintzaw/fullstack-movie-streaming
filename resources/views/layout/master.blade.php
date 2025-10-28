@@ -220,10 +220,21 @@
     @yield('js')
 
 
+    @auth
+        @if(auth()->user()->is_show_ads)
+        @foreach ($ads_links as $d)
+            {!! $d->ads_script !!}
+        @endforeach
+        @endif
+    @endauth
 
-    @foreach ($ads_links as $d)
-        {!! $d->ads_script !!}
-    @endforeach
+
+    @guest
+       @foreach ($ads_links as $d)
+            {!! $d->ads_script !!}
+        @endforeach
+    @endguest
+
 
 </body>
 
